@@ -10,3 +10,5 @@ export interface PostsState {
   error: string | null;
   posts: Post[];
 }
+
+export type GraphData = Record<string, number>;
