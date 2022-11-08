@@ -30,10 +30,6 @@ function App() {
     postData.jump(p);
   };
 
-  // user should be able to delete any post from the list which should in turn
-  // dynamically update the statistics. Note: The delete feature does not call any API and only will
-  // only delete the post from the Redux store.
-
   const postDescriptions = posts.map((post) => post.body).flat();
   const descriptionWords = postDescriptions
     .map((body) => body.split(" "))
