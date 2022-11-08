@@ -12,7 +12,7 @@ export const getChartOptions = (series: [string, number][], total: number) => {
     },
     subtitle: {
       useHTML: true,
-      text: "Total Word Count: 2385",
+      text: `Total Word Count: ${total}`,
       floating: true,
       align: "right",
       verticalAlign: "middle",

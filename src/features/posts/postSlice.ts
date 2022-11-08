@@ -23,10 +23,14 @@ export const postsSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    deletePost: (state, { payload }: PayloadAction<number>) => {
+      const newState = state.posts.filter((post) => post.id !== payload);
+      state.posts = newState;
+    },
   },
 });
 
-export const { getPostsLoading, getPostsSuccess, getPostsFailure } =
+export const { getPostsLoading, getPostsSuccess, getPostsFailure, deletePost } =
   postsSlice.actions;
 
 export default postsSlice.reducer;
