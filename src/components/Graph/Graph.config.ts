@@ -10,9 +10,10 @@ export const getChartOptions = (series: [string, number][], total: number) => {
       style: { color: "black", fontSize: "24px" },
       align: "left",
     },
+    accessibility: { enabled: false },
     subtitle: {
       useHTML: true,
-      text: `Total Word Count: ${total}`,
+      text: `Total Words Count: ${total}`,
       floating: true,
       align: "right",
       verticalAlign: "middle",

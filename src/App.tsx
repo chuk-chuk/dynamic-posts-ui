@@ -36,12 +36,15 @@ function App() {
     .flat();
   const splitWords = descriptionWords.map((word) => word.split(/\r?\n/)).flat();
 
-  const occurrences: GraphData = splitWords.reduce(
-    (acc: GraphData, el: string) => {
-      return acc[el] ? ++acc[el] : (acc[el] = 1), acc;
-    },
-    {}
-  );
+  const occurrences: GraphData = splitWords.reduce(function (
+    acc: GraphData,
+    currentValue
+  ) {
+    return (
+      acc[currentValue] ? ++acc[currentValue] : (acc[currentValue] = 1), acc
+    );
+  },
+  {});
 
   const sortable = Object.fromEntries(
     Object.entries(occurrences)
@@ -69,6 +72,7 @@ function App() {
         {postData.currentData().map((post, index) => {
           return (
             <ListItem
+              data-testid={`list-item-${post.id}`}
               listItem={post}
               key={index}
               onClick={() => handleItemClick(post.id)}
