@@ -8,6 +8,7 @@ import { ListItem } from "./components/ListItem/ListItem";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { GraphData } from "./types";
 import "./index.css";
+import { getAllWords, sortData } from "./utils/helpers";
 
 function App() {
   const { posts, isLoading, error } = useAppSelector(postsSelector);
@@ -25,18 +26,13 @@ function App() {
   if (isLoading) return <p>Loading posts ...</p>;
   if (error) return <p>Cannot display posts ...</p>;
 
-  const handleChange = (e: any, p: number) => {
+  const handleChange = (_: any, p: number) => {
     setPage(p);
     postData.jump(p);
   };
 
-  const postDescriptions = posts.map((post) => post.body).flat();
-  const descriptionWords = postDescriptions
-    .map((body) => body.split(" "))
-    .flat();
-  const splitWords = descriptionWords.map((word) => word.split(/\r?\n/)).flat();
-
-  const occurrences: GraphData = splitWords.reduce(function (
+  const allWords = getAllWords(posts);
+  const occurrences: GraphData = allWords.reduce(function (
     acc: GraphData,
     currentValue
   ) {
@@ -46,12 +42,7 @@ function App() {
   },
   {});
 
-  const sortable = Object.fromEntries(
-    Object.entries(occurrences)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 5)
-  );
-
+  const sortable = sortData(occurrences);
   const mappedData = Object.entries(sortable);
 
   const handleItemClick = (id: number) => {
@@ -64,7 +55,7 @@ function App() {
         <Graph
           data-testid="graph"
           graphData={mappedData}
-          total={splitWords.length}
+          total={allWords.length}
         />
       </div>
 
