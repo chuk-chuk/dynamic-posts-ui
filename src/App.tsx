@@ -6,9 +6,9 @@ import Graph from "./components/Graph/Graph";
 import usePagination from "./components/PaginatedItems/Pagination";
 import { ListItem } from "./components/ListItem/ListItem";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { getAllWords, sortData } from "./utils/helpers";
 import { GraphData } from "./types";
 import "./index.css";
-import { getAllWords, sortData } from "./utils/helpers";
 
 function App() {
   const { posts, isLoading, error } = useAppSelector(postsSelector);

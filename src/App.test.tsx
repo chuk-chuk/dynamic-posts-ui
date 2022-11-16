@@ -1,6 +1,5 @@
 import React from "react";
 import { screen, waitFor } from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { renderWithProviders } from "./utils/test-utils";
@@ -37,8 +36,5 @@ describe("App", () => {
       expect(screen.getByText("Top Five Frequent Words")).toBeInTheDocument(),
       expect(screen.getByText(/Total Words Count: 5/)).toBeInTheDocument(),
     ]);
-
-    // userEvent.click(screen.getByTestId("list-item-1"));
-    // expect(screen.getByText(/Total Words Count: 2/)).toBeInTheDocument();
   });
 });
